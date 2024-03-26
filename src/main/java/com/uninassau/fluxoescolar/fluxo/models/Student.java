@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
 
 @Entity
@@ -26,5 +25,8 @@ public class Student {
 
     private Integer registrationNumber;
 
+    private String gender;
+
+    private double monthlyFee;
 
 }
