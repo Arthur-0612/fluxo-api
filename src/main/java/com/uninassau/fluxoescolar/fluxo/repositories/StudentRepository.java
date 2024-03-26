@@ -1,4 +1,8 @@
 package com.uninassau.fluxoescolar.fluxo.repositories;
 
-public class StudentRepository {
+import com.uninassau.fluxoescolar.fluxo.models.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
 }
