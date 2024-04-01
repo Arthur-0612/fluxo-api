@@ -12,4 +12,6 @@ public class TeacherDTO {
     private String name;
 
     private String course;
+
+    private String status;
 }

@@ -22,4 +22,5 @@ public class Teacher {
 
     private String course;
 
+    private String status;
 }

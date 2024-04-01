@@ -2,6 +2,7 @@ package com.uninassau.fluxoescolar.fluxo.services;
 
 import com.uninassau.fluxoescolar.fluxo.dtos.StudentDTO;
 import com.uninassau.fluxoescolar.fluxo.models.Student;
+import org.springframework.data.domain.Page;
 
 public interface StudentService {
 
@@ -9,7 +10,9 @@ public interface StudentService {
 
     StudentDTO save(StudentDTO dto);
 
-    Student update(StudentDTO dto);
+    void delete(Long id);
+
+    Page<Student> search(String status, Integer page, Integer linesPerPage, String orderBy, String direction);
 
     StudentDTO toDto(Student entity);
 

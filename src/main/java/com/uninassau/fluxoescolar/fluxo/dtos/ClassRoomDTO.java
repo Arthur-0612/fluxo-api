@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +20,9 @@ public class ClassRoomDTO {
 
     private LocalTime endTime;
 
-    private Student student;
+    private String status;
+
+    private List<Student> students;
 
     private Teacher teacher;
 

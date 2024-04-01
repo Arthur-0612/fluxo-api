@@ -1,5 +1,8 @@
 package com.uninassau.fluxoescolar.fluxo.dtos;
 
+import com.uninassau.fluxoescolar.fluxo.models.ClassRoom;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +23,6 @@ public class StudentDTO {
     private String gender;
 
     private double monthlyFee;
+
+    private String status;
 }

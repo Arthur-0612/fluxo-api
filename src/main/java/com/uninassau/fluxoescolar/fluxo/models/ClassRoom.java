@@ -5,12 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "ClassRoom")
@@ -28,11 +31,15 @@ public class ClassRoom {
 
     private LocalTime endTime;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private String status;
+
+    @ManyToMany
+    @JoinTable(name = "classRoom_students", joinColumns =
+            {@JoinColumn(name = "classRoom_id")},
+            inverseJoinColumns =
+            {@JoinColumn(name = "student_id")})
+    private List<Student> students;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 }
