@@ -6,6 +6,10 @@ import com.uninassau.fluxoescolar.fluxo.models.Student;
 import com.uninassau.fluxoescolar.fluxo.repositories.StudentRepository;
 import com.uninassau.fluxoescolar.fluxo.services.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,13 +27,25 @@ public class StudentServiceImpl implements StudentService {
     public StudentDTO save(StudentDTO dto) {
 
         var student = toEntity(dto);
-
+        student.setStatus("A");
         return toDto(repository.save(student));
     }
 
     @Override
-    public Student update(StudentDTO dto) {
-        return null;
+    public void delete(Long id) {
+        var student = findById(id);
+        student.setStatus("I");
+        repository.save(student);
+    }
+
+    @Override
+    public Page<Student> search(String status, Integer page, Integer linesPerPage, String orderBy, String direction){
+        Pageable pageable = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+
+        if(status.isEmpty()){
+            return repository.findAll(pageable);
+        }
+        return  repository.findByStatus(status, pageable);
     }
 
     @Override

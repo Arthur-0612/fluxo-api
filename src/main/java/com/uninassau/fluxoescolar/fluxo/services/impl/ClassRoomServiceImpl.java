@@ -6,6 +6,10 @@ import com.uninassau.fluxoescolar.fluxo.models.ClassRoom;
 import com.uninassau.fluxoescolar.fluxo.repositories.ClassRoomRepository;
 import com.uninassau.fluxoescolar.fluxo.services.ClassRoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,14 +26,25 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     @Override
     public ClassRoomDTO save(ClassRoomDTO dto) {
         var classRooom = toEntity(dto);
-
+        classRooom.setStatus("A");
         return toDto(repository.save(classRooom));
     }
 
+    @Override
+    public void delete(Long id) {
+        var classroom =findById(id);
+        classroom.setStatus("I");
+        repository.save(classroom);
+    }
 
     @Override
-    public ClassRoom update(ClassRoomDTO dto) {
-        return null;
+    public Page<ClassRoom> search(String status, Integer page, Integer linesPerPage, String orderBy, String direction){
+        Pageable pageable = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+
+        if(status.isEmpty()){
+            return repository.findAll(pageable);
+        }
+        return repository.findByStatus(status, pageable);
     }
 
     @Override
@@ -38,7 +53,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         dto.setId(entity.getId());
         dto.setClassName(entity.getClassName());
         dto.setTeacher(entity.getTeacher());
-        dto.setStudent(entity.getStudent());
+        dto.setStudents(entity.getStudents());
         dto.setStartTime(entity.getStartTime());
         dto.setEndTime(entity.getEndTime());
         return dto;
@@ -50,7 +65,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         entity.setId(dto.getId());
         entity.setClassName(dto.getClassName());
         entity.setTeacher(dto.getTeacher());
-        entity.setStudent(dto.getStudent());
+        entity.setStudents(dto.getStudents());
         entity.setStartTime(dto.getStartTime());
         entity.setEndTime(dto.getEndTime());
         return entity;

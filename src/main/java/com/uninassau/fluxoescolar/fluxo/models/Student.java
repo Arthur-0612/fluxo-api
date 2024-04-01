@@ -29,4 +29,6 @@ public class Student {
 
     private double monthlyFee;
 
+    private String status;
+
 }
