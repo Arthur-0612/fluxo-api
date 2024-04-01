@@ -57,6 +57,7 @@ public class StudentServiceImpl implements StudentService {
         dto.setBirthDate(entity.getBirthDate());
         dto.setMonthlyFee(entity.getMonthlyFee());
         dto.setRegistrationNumber(entity.getRegistrationNumber());
+        dto.setStatus(entity.getStatus());
         return dto;
     }
 
@@ -69,6 +70,7 @@ public class StudentServiceImpl implements StudentService {
         entity.setBirthDate(dto.getBirthDate());
         entity.setMonthlyFee(dto.getMonthlyFee());
         entity.setRegistrationNumber(dto.getRegistrationNumber());
+        entity.setStatus(dto.getStatus());
         return entity;
     }
 }

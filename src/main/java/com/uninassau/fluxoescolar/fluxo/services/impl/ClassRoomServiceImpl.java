@@ -56,6 +56,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         dto.setStudents(entity.getStudents());
         dto.setStartTime(entity.getStartTime());
         dto.setEndTime(entity.getEndTime());
+        dto.setStatus(entity.getStatus());
         return dto;
     }
 
@@ -68,6 +69,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         entity.setStudents(dto.getStudents());
         entity.setStartTime(dto.getStartTime());
         entity.setEndTime(dto.getEndTime());
+        entity.setStatus(dto.getStatus());
         return entity;
     }
 }
