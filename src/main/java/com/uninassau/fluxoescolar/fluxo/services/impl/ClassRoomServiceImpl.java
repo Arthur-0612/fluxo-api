@@ -39,7 +39,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 
     @Override
     public Page<ClassRoom> search(String status, Integer page, Integer linesPerPage, String orderBy, String direction){
-        Pageable pageable = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        Pageable pageable = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), "className");
 
         if(status.isEmpty()){
             return repository.findAll(pageable);
