@@ -23,7 +23,7 @@ public class StudentController {
 
     private final StudentService service;
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<StudentDTO> findById(@PathVariable Long id){
         var student = service.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(service.toDto(student));

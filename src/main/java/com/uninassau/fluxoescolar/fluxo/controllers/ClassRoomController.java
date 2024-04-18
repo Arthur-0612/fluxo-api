@@ -48,7 +48,7 @@ public class ClassRoomController {
             @RequestParam(value="status", defaultValue="") String status,
             @RequestParam(value="page", defaultValue="0") Integer page,
             @RequestParam(value="linesPerPage", defaultValue="10") Integer linesPerPage,
-            @RequestParam(value="orderBy", defaultValue="name") String orderBy,
+            @RequestParam(value="orderBy", defaultValue="className") String orderBy,
             @RequestParam(value="direction", defaultValue="ASC") String direction){
         Page<ClassRoom> list = service.search(status, page, linesPerPage, orderBy, direction);
         Page<ClassRoomDTO> listDto =list.map(service::toDto);
